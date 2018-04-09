@@ -12,7 +12,7 @@ pipeline {
 			}
 			steps {
 				echo '----- Update from GXServer -----'
-				build job:'Update', parameters: [text(name: 'GXPROGRAMDIR', value: "${GXPROGRAMDIR}"),text(name: 'SERVERUSER', value: "${SERVERUSER}"),text(name: 'SERVERPASS', value: "${SERVERPASS}"),text(name: 'KBDIR', value: "${KBDIR}"),text(name: 'KBVERSION', value: "${GOCEKBVERSION}")]
+				build job:'Update', parameters: [text(name: 'GXPROGRAMDIR', value: "${GXPROGRAMDIR}"),text(name: 'SERVERUSER', value: "${SERVERUSER}"),text(name: 'SERVERPASS', value: "${SERVERPASS}"),text(name: 'KBDIR', value: "${KBDIR}"),text(name: 'KBVERSION', value: "${KBVERSION}")]
 			}
 		}
 		stage('Build') {
@@ -25,7 +25,7 @@ pipeline {
 			}
 		   steps {
 				echo '----- Building -----'
-				build job:'Build', parameters: [text(name: 'GXPROGRAMDIR', value: "${GXPROGRAMDIR}"),text(name: 'SERVERUSER', value: "${SERVERUSER}"),text(name: 'SERVERPASS', value: "${SERVERPASS}"),text(name: 'KBDIR', value: "${KBDIR}"),text(name: 'KBVERSION', value: "${GOCEKBVERSION}")]
+				build job:'Build', parameters: [text(name: 'GXPROGRAMDIR', value: "${GXPROGRAMDIR}"),text(name: 'SERVERUSER', value: "${SERVERUSER}"),text(name: 'SERVERPASS', value: "${SERVERPASS}"),text(name: 'KBDIR', value: "${KBDIR}"),text(name: 'KBVERSION', value: "${KBVERSION}")]
 			}
 		}
 	}
