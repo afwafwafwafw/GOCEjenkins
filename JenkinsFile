@@ -1,0 +1,32 @@
+pipeline {
+	agent any
+
+	stages {
+		stage('Update') {
+			environment {
+				GXPROGRAMDIR = credentials('GOCEGXPROGRAMDIR')
+				SERVERUSER = credentials('GOCESERVERUSER')
+				SERVERPASS = credentials('GOCESERVERPASS')
+				KBDIR = credentials('GOCEKBDir')
+				KBVERSION = credentials('GOCEKBVERSION')
+			}
+			steps {
+				echo '----- Update from GXServer -----'
+				build job:'Update', parameters: [text(name: 'GXPROGRAMDIR', value: "${GXPROGRAMDIR}"),text(name: 'SERVERUSER', value: "${SERVERUSER}"),text(name: 'SERVERPASS', value: "${SERVERPASS}"),text(name: 'KBDIR', value: "${KBDIR}"),text(name: 'KBVERSION', value: "${GOCEKBVERSION}")]
+			}
+		}
+		stage('Build') {
+			environment {
+				GXPROGRAMDIR = credentials('GOCEGXPROGRAMDIR')
+				SERVERUSER = credentials('GOCESERVERUSER')
+				SERVERPASS = credentials('GOCESERVERPASS')
+				KBDIR = credentials('GOCEKBDir')
+				KBVERSION = credentials('GOCEKBVERSION')
+			}
+		   steps {
+				echo '----- Building -----'
+				build job:'Build', parameters: [text(name: 'GXPROGRAMDIR', value: "${GXPROGRAMDIR}"),text(name: 'SERVERUSER', value: "${SERVERUSER}"),text(name: 'SERVERPASS', value: "${SERVERPASS}"),text(name: 'KBDIR', value: "${KBDIR}"),text(name: 'KBVERSION', value: "${GOCEKBVERSION}")]
+			}
+		}
+	}
+}
